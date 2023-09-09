@@ -1,0 +1,66 @@
+.form-control {
+  box-shadow: 0 5px 100px 0 #0369f7;
+  width: 50%;
+  height: 25px;
+}
+.form-control::placeholder  {
+  font-family: FontAwesome;
+}
+/* termina las clases del buscador */
+
+.card-size{
+  background-color: aliceblue;
+  width: 30%;
+  margin: 20px;
+  padding-bottom: .5%;
+}
+
+.img-size{
+  width: 55%;
+  height: 100%;
+}
+
+.cards{
+  flex-wrap: wrap;
+  display: inline-flex;
+}
+
+ul{
+  color: black;
+}
+
+/* termina las clases de la card padre */
+
+.title-evolution{
+  font-size: 20px;
+  padding-top: 20px;
+  text-align: center;
+
+}
+
+.evolutions-card
+{
+  width: 40%;
+  height: 80%;
+  margin: 10px;
+}
+
+.img-evolution-size{
+  width: 100%;
+  height: 100%;
+}
+
+.title-name-evolution{
+  font-size: 17px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: white;
+
+}
+b{
+  font-size: 20px;
+  color: black;
+
+}
+/* termina las claces de la evolucion */
+

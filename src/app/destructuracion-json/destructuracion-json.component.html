@@ -1,0 +1,24 @@
+<div fxLayout="row" fxLayoutAlign="center">
+
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Arreglo Original</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <pre>{{ arregloOriginal | json }}</pre>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Arreglo Modificado</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <pre>
+        {{ arregloModificado | json }}
+      </pre>
+    </mat-card-content>
+  </mat-card>
+</div>

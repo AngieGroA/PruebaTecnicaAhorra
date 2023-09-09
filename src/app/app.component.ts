@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PokemonService } from './pokemons/services/pokemon.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'prueba-tecnica';
+  opened = false;
+  favoritePokemons: any[] = [];
+
+  constructor(private pokemonService: PokemonService) {
+    this.favoritePokemons = this.pokemonService.getFavorites();
+  }
+
+  ngOnInit(): void {
+
+
+  }
+
+  onClick(){
+    this.opened = false;
+  }
 }

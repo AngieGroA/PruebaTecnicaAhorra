@@ -1,0 +1,66 @@
+mat-sidenav-container{
+  height: calc(205vh - 115vh);
+  background-color:white
+}
+
+mat-sidenav{
+  width: 300px;
+  background-color: white;
+}
+
+li{
+  font-size: 11px;
+}
+
+.card-size{
+  background-color: aliceblue;
+  width: 90%;
+  margin: 10px;
+}
+
+.img-size{
+  width: 35%;
+  height: 70%;
+}
+
+.cards{
+  flex-wrap: wrap;
+  display: inline-flex;
+}
+
+ul{
+  color: black;
+}
+
+/* termina las clases de la card padre */
+
+.cards-detail{
+  flex-wrap: wrap;
+  display: inline-flex;
+
+}
+
+.evolutions-card
+{
+  width: 40%;
+  margin: 5px;
+
+}
+
+b{
+  font-size: 16px;
+  color: black;
+
+}
+
+.title-name-evolution{
+  font-size: 12px;
+  color: white;
+
+}
+
+.div-title-evolution{
+  text-align: center;
+}
+
+/* termina las claces de la evolucion */

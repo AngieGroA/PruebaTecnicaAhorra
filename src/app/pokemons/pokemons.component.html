@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="center" style="padding-top: 2%;">
+  <input class="form-control" type="text" name="search" autocomplete="off" placeholder="Agrega un id o nombre"
+    [(ngModel)]="criterioBusqueda" (input)="filtrarPokemon()">
+</div>
+
+<div fxLayout="row" class="cards">
+  <mat-card class="card-size" *ngFor="let item of pokemons">
+    <mat-card-header>
+      <button style="height: 40px; color: deeppink;" (click)="toggleFavorite(item)">
+        <mat-icon *ngIf="isFavorite(item)">favorite</mat-icon>
+        <mat-icon *ngIf="!isFavorite(item)">favorite_border</mat-icon>
+      </button>
+      <img mat-card-xl-image class="img-size" [src]="item.imageUrl" alt="{{ item.name }} Image">
+
+      <ul>
+        <li><strong>Name:</strong> {{ item.name }}</li>
+        <li><strong>ID:</strong> {{ item.id }}</li>
+        <li><strong>Abilities:</strong>
+          <ul>
+            <li *ngFor="let ability of item.abilities">{{ ability }}</li>
+          </ul>
+          <hr>
+        </li>
+      </ul>
+
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="title-evolution">
+        <b>Evoluciones</b>
+      </div>
+      <!-- pinta las card de evoluciones -->
+      <div fxLayout="row" class="cards">
+        <mat-card class="evolutions-card" [style.background-color]="item.colors"
+          *ngFor="let itemEvolution of item.evolution">
+          <mat-card-header>
+            <b class="title-name-evolution">{{itemEvolution}}</b>
+          </mat-card-header>
+
+          <mat-card-content>
+            <!-- <img mat-card-xl-image [src]="item.imageUrl"
+        class="img-evolution-size"> -->
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+      <!-- pinta las card de evoluciones -->
+
+    </mat-card-content>
+  </mat-card>
+
+</div>
