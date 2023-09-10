@@ -3,51 +3,59 @@
     [(ngModel)]="criterioBusqueda" (input)="filtrarPokemon()">
 </div>
 
-<div fxLayout="row" class="cards">
-  <mat-card class="card-size" *ngFor="let item of pokemons">
+<div fxLayout="row" class="div-card">
+  <mat-card  class="mat-card-pokemon" *ngFor="let item of pokemons">
     <mat-card-header>
-      <button style="height: 40px; color: deeppink;" (click)="toggleFavorite(item)">
-        <mat-icon *ngIf="isFavorite(item)">favorite</mat-icon>
-        <mat-icon *ngIf="!isFavorite(item)">favorite_border</mat-icon>
-      </button>
-      <img mat-card-xl-image class="img-size" [src]="item.imageUrl" alt="{{ item.name }} Image">
+      <div fxLayout="column">
+        <div fxFlex="20">
+          <button style=" color: deeppink;" (click)="toggleFavorite(item)">
+            <mat-icon *ngIf="isFavorite(item)">favorite</mat-icon>
+            <mat-icon *ngIf="!isFavorite(item)">favorite_border</mat-icon>
+          </button>
+        </div>
 
-      <ul>
-        <li><strong>Name:</strong> {{ item.name }}</li>
-        <li><strong>ID:</strong> {{ item.id }}</li>
-        <li><strong>Abilities:</strong>
-          <ul>
-            <li *ngFor="let ability of item.abilities">{{ ability }}</li>
-          </ul>
-          <hr>
-        </li>
-      </ul>
+        <div fxLayout="row">
+          <div fxFlex="45">
+            <img mat-card-xl-image [src]="item.imageUrl" alt="{{ item.name }} Image">
+          </div>
+          <div fxFlex="55">
+            <ul>
+              <li><strong>Nombre:</strong> {{ item.name }}</li>
+              <li><strong>Numero:</strong> {{ item.id }}</li>
+              <li><strong>Habilidades:</strong>
+                <ul>
+                  <li *ngFor="let ability of item.abilities">{{ ability }}</li>
+                </ul>
+                <!-- <hr> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
     </mat-card-header>
 
     <mat-card-content>
-      <div class="title-evolution">
+      <hr>
+      <div fxLayout="column" >
         <b>Evoluciones</b>
+        <div fxLayout="row" class="div-card" fxFlexAlign="center">
+          <mat-card class="mat-card-evolutions" [style.background-color]="item.colors" *ngFor="let itemEvolution of item.evolution">
+            <mat-card-header>
+              <mat-card-title>{{itemEvolution}}</mat-card-title>
+              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content>
+              <!-- <p>This card indeterminates progress bar.</p>
+              <p>{{longText}}</p> -->
+            </mat-card-content>
+
+          </mat-card>
+
+        </div>
+
       </div>
-      <!-- pinta las card de evoluciones -->
-      <div fxLayout="row" class="cards">
-        <mat-card class="evolutions-card" [style.background-color]="item.colors"
-          *ngFor="let itemEvolution of item.evolution">
-          <mat-card-header>
-            <b class="title-name-evolution">{{itemEvolution}}</b>
-          </mat-card-header>
-
-          <mat-card-content>
-            <!-- <img mat-card-xl-image [src]="item.imageUrl"
-        class="img-evolution-size"> -->
-          </mat-card-content>
-        </mat-card>
-
-      </div>
-
-      <!-- pinta las card de evoluciones -->
 
     </mat-card-content>
   </mat-card>
-
 </div>
