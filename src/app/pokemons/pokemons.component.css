@@ -23,8 +23,12 @@
   margin: 10px;
 }
 
-img{
+.img-pokemon{
   max-width: 200px;
+}
+
+.img-pokemon-evolution{
+  max-width: 100px;
 }
 /* .div-card-evolution{
   flex-wrap: wrap;

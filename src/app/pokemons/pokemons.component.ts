@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PokemonService } from './services/pokemon.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -33,6 +34,7 @@ export class PokemonsComponent {
       const pokemonUrls = data.results.map((result: any) => result.url);
 
       pokemonUrls.forEach((url: string) => {
+        // console.log("urlImagen",url)
         this.pokemonService.getPokemonDetails(url).subscribe((pokemon: any) => {
 
           const pokemonData: any = {
@@ -50,12 +52,27 @@ export class PokemonsComponent {
             pokemonData.colors = especieData.color.name
             this.pokemonService.getEvolutions(especieData.evolution_chain.url).subscribe((evolutionData) => {
               //console.log("Info evolution",evolutionData.chain.evolves_to)
+
               const evolutionsPokemons = this.obtenerEvoluciones(evolutionData.chain.evolves_to);
-              pokemonData.evolution = evolutionsPokemons;
-              // pokemonData.evolution = evolutionsPokemons;
+              const evolucionesFinales: any[] = [];
+              for (const item of evolutionsPokemons) {
+
+                // console.log('Pokemon Data:', item.imgEvolutionUrl);
+                this.pokemonService.getPokemonDetails(item.imgEvolutionUrl).subscribe((pokemon: any) => {
+                  const evolutionPokemon = {
+                    name: item.name,
+                    imgEvolutionUrl: pokemon.sprites.other.home.front_default,
+                  };
+                  evolucionesFinales.push(evolutionPokemon);
+                })
+              }
+              //console.log('Pokemon Data:', evolucionesFinales,"ssss");
+              pokemonData.evolution = evolucionesFinales
+
             })
             // console.log('Pokemon Data:', pokemonData);
             this.pokemons.push(pokemonData);
+            //console.log('Pokemon Data:', pokemonData);
           });
         });
       });
@@ -63,23 +80,36 @@ export class PokemonsComponent {
   }
 
 
-  obtenerEvoluciones(cadenaEvolucion: any): string[] {
-    const evoluciones: string[] = [];
+  obtenerEvoluciones(cadenaEvolucion: any): any[] {
+    const evoluciones: any[] = [];
+
+
 
     if (cadenaEvolucion && cadenaEvolucion.length > 0) {
 
       for (const evolucion of cadenaEvolucion) {
 
         const nombreEvolucion = evolucion.species.name;
-        evoluciones.push(nombreEvolucion);
+        const urlEvolution = evolucion.species.url
+        const urlReplace = urlEvolution.replace('-species', '')
+        const evolutionPokemon = {
+          name: nombreEvolucion,
+          imgEvolutionUrl: urlReplace,
+        };
+        evoluciones.push(evolutionPokemon);
 
         const evolucionesSubsecuentes = this.obtenerEvoluciones(evolucion.evolves_to);
         evoluciones.push(...evolucionesSubsecuentes);
       }
+
+
+
     }
 
     return evoluciones;
   }
+
+
 
   filtrarPokemon() {
     const criterio = this.criterioBusqueda.toLowerCase().trim();

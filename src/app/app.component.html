@@ -44,12 +44,11 @@
               <mat-card class="evolutions-card" [style.background-color]="item.colors"
                 *ngFor="let itemEvolution of item.evolution">
                 <mat-card-header>
-                  <b class="title-name-evolution">{{itemEvolution}}</b>
+                  <b class="title-name-evolution">{{itemEvolution.name}}</b>
                 </mat-card-header>
 
                 <mat-card-content>
-                  <!-- <img mat-card-xl-image [src]="item.imageUrl"
-              class="img-evolution-size"> -->
+                  <img class="img-pokemon-evolution" [src]="itemEvolution.imgEvolutionUrl" alt="{{ itemEvolution.name }} Image">
                 </mat-card-content>
               </mat-card>
 

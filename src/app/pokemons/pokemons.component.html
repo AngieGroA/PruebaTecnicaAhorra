@@ -16,7 +16,7 @@
 
         <div fxLayout="row">
           <div fxFlex="45">
-            <img mat-card-xl-image [src]="item.imageUrl" alt="{{ item.name }} Image">
+            <img class="img-pokemon" mat-card-xl-image [src]="item.imageUrl" alt="{{ item.name }} Image">
           </div>
           <div fxFlex="55">
             <ul>
@@ -42,9 +42,11 @@
         <div fxLayout="row" class="div-card" fxFlexAlign="center">
           <mat-card class="mat-card-evolutions" [style.background-color]="item.colors" *ngFor="let itemEvolution of item.evolution">
             <mat-card-header>
-              <mat-card-title>{{itemEvolution}}</mat-card-title>
+              <mat-card-title>{{itemEvolution.name}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
+              <img class="img-pokemon-evolution" [src]="itemEvolution.imgEvolutionUrl" alt="{{ itemEvolution.name }} Image">
+
               <!-- <p>This card indeterminates progress bar.</p>
               <p>{{longText}}</p> -->
             </mat-card-content>

@@ -65,6 +65,10 @@ b{
 
 /* termina las claces de la evolucion */
 button.delete mat-icon {
-  color: #ff0303; /* Cambia el color del texto si es necesario */
+  color: #ff0303;
 }
 
+
+.img-pokemon-evolution{
+  max-width: 60px;
+}
