@@ -19,9 +19,10 @@ export class PokemonsComponent {
 
 
   constructor(private pokemonService: PokemonService) {
-
+    this.loadFavoritesFromLocalStorage();
   }
   ngOnInit(): void {
+    console.log('Inicializa');
     this.initPokemons()
 
   }
@@ -45,7 +46,7 @@ export class PokemonsComponent {
 
 
           this.pokemonService.getEspecie(pokemon.id).subscribe((especieData: any) => {
-            console.log("Info especie", especieData.color.name)
+            // console.log("Info especie", especieData.color.name)
             pokemonData.colors = especieData.color.name
             this.pokemonService.getEvolutions(especieData.evolution_chain.url).subscribe((evolutionData) => {
               //console.log("Info evolution",evolutionData.chain.evolves_to)
@@ -53,9 +54,7 @@ export class PokemonsComponent {
               pokemonData.evolution = evolutionsPokemons;
               // pokemonData.evolution = evolutionsPokemons;
             })
-
-            console.log('Pokemon Data:', pokemonData);
-
+            // console.log('Pokemon Data:', pokemonData);
             this.pokemons.push(pokemonData);
           });
         });
@@ -86,10 +85,8 @@ export class PokemonsComponent {
     const criterio = this.criterioBusqueda.toLowerCase().trim();
 
     if (criterio === '') {
-      // Si el campo de búsqueda está vacío, muestra todos los Pokémon.
       this.initPokemons();
     } else {
-      // Filtra la lista de Pokémon en función del criterio de búsqueda.
       this.pokemons = this.pokemons.filter(pokemon => {
         return (
           pokemon.name.toLowerCase().includes(criterio) ||
@@ -99,22 +96,7 @@ export class PokemonsComponent {
     }
   }
 
-  // toggleFavorite(pokemon: any) {
-  //   if (this.isFavorite(pokemon)) {
-  //     // Si el Pokémon ya está en favoritos, quítalo.
-  //     this.favoritePokemons = this.favoritePokemons.filter(fav => fav !== pokemon);
-  //   } else {
-  //     // Si el Pokémon no está en favoritos, agrégalo.
-  //     this.favoritePokemons.push(pokemon);
-  //   }
-  // }
-
-  // isFavorite(pokemon: any): boolean {
-  //   // Verifica si el Pokémon está en la lista de favoritos.
-  //   return this.favoritePokemons.includes(pokemon);
-  // }
-
-  toggleFavorite(pokemon: any) {
+  favorite(pokemon: any) {
     if (this.isFavorite(pokemon)) {
       this.pokemonService.removeFromFavorites(pokemon);
     } else {
@@ -123,7 +105,12 @@ export class PokemonsComponent {
   }
 
   isFavorite(pokemon: any): boolean {
-    return this.pokemonService.getFavorites().includes(pokemon);
+    return this.favoritePokemons.some(fav => fav.id === pokemon.id);
   }
+
+  private loadFavoritesFromLocalStorage(): void {
+    this.favoritePokemons = this.pokemonService.getFavorites();
+  }
+
 }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PokemonService } from './pokemons/services/pokemon.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,4 +24,11 @@ export class AppComponent {
   onClick(){
     this.opened = false;
   }
+
+  deleteFavorites(){
+    this.pokemonService.deleteFavorites();
+    this.favoritePokemons = this.pokemonService.getFavorites();
+    window.location.reload();
+  }
+
 }

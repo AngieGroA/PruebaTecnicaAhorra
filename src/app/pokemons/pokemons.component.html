@@ -8,7 +8,7 @@
     <mat-card-header>
       <div fxLayout="column">
         <div fxFlex="20">
-          <button style=" color: deeppink;" (click)="toggleFavorite(item)">
+          <button style=" color: deeppink;" (click)="favorite(item)" matTooltip="Agregar a favoritos">
             <mat-icon *ngIf="isFavorite(item)">favorite</mat-icon>
             <mat-icon *ngIf="!isFavorite(item)">favorite_border</mat-icon>
           </button>
@@ -43,7 +43,6 @@
           <mat-card class="mat-card-evolutions" [style.background-color]="item.colors" *ngFor="let itemEvolution of item.evolution">
             <mat-card-header>
               <mat-card-title>{{itemEvolution}}</mat-card-title>
-              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
             </mat-card-header>
             <mat-card-content>
               <!-- <p>This card indeterminates progress bar.</p>

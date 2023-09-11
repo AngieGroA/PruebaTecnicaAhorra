@@ -10,11 +10,13 @@
   <h1> Desestructuración JSON</h1>
   </mat-toolbar-row>
 </mat-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav [(opened)]="opened" mode="side">
-    <div>
-      <h2>pokemons favoritos</h2>
-
+    <div style="margin: 10px;" >
+      <button class="delete" (click)="deleteFavorites()" matTooltip="Eliminar favoritos">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
       <div fxLayout="row" class="cards">
         <mat-card class="card-size" *ngFor="let item of favoritePokemons">
           <mat-card-header>

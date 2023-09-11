@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { DestructuracionJsonComponent } from './destructuracion-json/destructuracion-json.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { DestructuracionJsonComponent } from './destructuracion-json/destructura
     CarouselModule,
     FormsModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTooltipModule
 
 
   ],
